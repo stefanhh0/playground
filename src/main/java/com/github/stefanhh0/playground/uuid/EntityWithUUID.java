@@ -1,4 +1,4 @@
-package test;
+package com.github.stefanhh0.playground.uuid;
 
 import java.util.UUID;
 
@@ -12,13 +12,13 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 @Entity
-@Table(schema = "test", name = "test")
-public class TestUUIDEntity {
+@Table(schema = "uuid", name = "entity_with_uuid")
+public class EntityWithUUID {
 
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator", parameters = {
-            @Parameter(name = "uuid_gen_strategy_class", value = "test.TimeOrderedUUIDGeneratorStrategy") })
+            @Parameter(name = "uuid_gen_strategy_class", value = "com.github.stefanhh0.playground.uuid.TimeOrderedUUIDGeneratorStrategy") })
     @Column(name = "id", nullable = false, updatable = false)
     private UUID id;
 
@@ -35,8 +35,7 @@ public class TestUUIDEntity {
 //    @Column(name = "id", nullable = false, updatable = false)
 //    private UUID id;
 
-    protected TestUUIDEntity() {
-
+    protected EntityWithUUID() {
     }
 
     public UniqueID getId() {

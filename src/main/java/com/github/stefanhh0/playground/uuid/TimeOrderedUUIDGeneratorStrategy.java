@@ -1,4 +1,4 @@
-package test;
+package com.github.stefanhh0.playground.uuid;
 
 import java.util.UUID;
 

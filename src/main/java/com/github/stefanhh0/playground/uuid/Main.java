@@ -1,4 +1,4 @@
-package test;
+package com.github.stefanhh0.playground.uuid;
 
 import static java.lang.System.out;
 
@@ -24,7 +24,8 @@ import com.github.f4b6a3.uuid.util.UuidUtil;
 
 public class Main {
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+    private static final EntityManagerFactory emf = Persistence
+            .createEntityManagerFactory("playground");
 
     private static final EntityManager em = emf.createEntityManager();
 
@@ -40,25 +41,10 @@ public class Main {
         emf.close();
     }
 
-    private static void createSyntheticSequentialUUIDsStartingAtZero() {
-        ZonedDateTime gregorianChange = ZonedDateTime.of(1582, Month.OCTOBER.getValue(), 15, 0, 0,
-                0, 0, ZoneId.from(ZoneOffset.UTC));
-
-        final long gregorianChangeInSeconds = gregorianChange.toEpochSecond();
-
-        final TimeOrderedUuidCreator timeOrderedCreator = UuidCreator.getTimeOrderedCreator();
-        for (long i = 0; i < 2000; i += 100) {
-            final UUID oldId = timeOrderedCreator
-                    .create(Instant.ofEpochSecond(gregorianChangeInSeconds, i), 0, 0L);
-            out.println(oldId);
-            out.println(toString(oldId));
-        }
-    }
-
     private static void singleUUIDDemo() {
         final EntityTransaction transaction = em.getTransaction();
         transaction.begin();
-        final TestUUIDEntity test = new TestUUIDEntity();
+        final EntityWithUUID test = new EntityWithUUID();
         em.persist(test);
         transaction.commit();
 
@@ -90,13 +76,28 @@ public class Main {
 
     }
 
+    private static void createSyntheticSequentialUUIDsStartingAtZero() {
+        ZonedDateTime gregorianChange = ZonedDateTime.of(1582, Month.OCTOBER.getValue(), 15, 0, 0,
+                0, 0, ZoneId.from(ZoneOffset.UTC));
+
+        final long gregorianChangeInSeconds = gregorianChange.toEpochSecond();
+
+        final TimeOrderedUuidCreator timeOrderedCreator = UuidCreator.getTimeOrderedCreator();
+        for (long i = 0; i < 2000; i += 100) {
+            final UUID oldId = timeOrderedCreator
+                    .create(Instant.ofEpochSecond(gregorianChangeInSeconds, i), 0, 0L);
+            out.println(oldId);
+            out.println(toString(oldId));
+        }
+    }
+
     private static void persist1M_SequenceEntites() {
         // save 1.000.000 entities, commit every 10.000.
         final EntityTransaction transaction = em.getTransaction();
         final Instant start = Instant.now();
         transaction.begin();
         for (int i = 0; i < 1000000; i++) {
-            em.persist(new TestSequenceIDEntity());
+            em.persist(new EntityWithSequenceID());
             if (i % 10000 == 0) {
                 transaction.commit();
                 transaction.begin();
@@ -118,7 +119,7 @@ public class Main {
         final Instant start = Instant.now();
         transaction.begin();
         for (int i = 0; i < 1000000; i++) {
-            em.persist(new TestUUIDEntity());
+            em.persist(new EntityWithUUID());
             if (i % 10000 == 0) {
                 transaction.commit();
                 transaction.begin();

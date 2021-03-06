@@ -1,4 +1,4 @@
-package test;
+package com.github.stefanhh0.playground.uuid;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,12 +9,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema = "test", name = "testseq")
-public class TestSequenceIDEntity {
+@Table(schema = "uuid", name = "entity_with_sequence_id")
+public class EntityWithSequenceID {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "test_generator")
-    @SequenceGenerator(name = "test_generator", sequenceName = "test_seq", allocationSize = 100)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_generator")
+    @SequenceGenerator(name = "sequence_generator", sequenceName = "sequence", schema = "uuid")
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
