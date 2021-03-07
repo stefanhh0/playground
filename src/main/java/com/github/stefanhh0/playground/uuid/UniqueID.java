@@ -1,8 +1,11 @@
 package com.github.stefanhh0.playground.uuid;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.util.Date;
 import java.util.UUID;
 
+import com.github.f4b6a3.uuid.util.UuidTime;
 import com.github.f4b6a3.uuid.util.UuidUtil;
 
 public final class UniqueID implements Serializable, Comparable<UniqueID> {
@@ -15,8 +18,16 @@ public final class UniqueID implements Serializable, Comparable<UniqueID> {
         this.uuid = uuid;
     }
 
-    public long timestamp() {
+    public long getTimestamp() {
         return UuidUtil.extractTimestamp(uuid);
+    }
+
+    public Instant getInstant() {
+        return UuidTime.toInstant(getTimestamp());
+    }
+
+    public Date getDate() {
+        return Date.from(getInstant());
     }
 
     @Override
