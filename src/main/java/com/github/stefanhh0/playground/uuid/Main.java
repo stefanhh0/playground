@@ -30,18 +30,18 @@ public class Main {
     private static final EntityManager em = emf.createEntityManager();
 
     public static void main(final String[] args) {
-        singleUUIDDemo();
+        singleUUIDv6Demo();
 
         createSyntheticSequentialUUIDsStartingAtZero();
 
-        persist1M_SequenceEntites();
-        persist1M_UUIDEntities();
+        persist1M_EntitiesWithSequenceID();
+        persist1M_EntitiesWithUUIDv6();
 
         em.close();
         emf.close();
     }
 
-    private static void singleUUIDDemo() {
+    private static void singleUUIDv6Demo() {
         final EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         final EntityWithUUID test = new EntityWithUUID();
@@ -91,7 +91,7 @@ public class Main {
         }
     }
 
-    private static void persist1M_SequenceEntites() {
+    private static void persist1M_EntitiesWithSequenceID() {
         // save 1.000.000 entities, commit every 10.000.
         final EntityTransaction transaction = em.getTransaction();
         final Instant start = Instant.now();
@@ -113,7 +113,7 @@ public class Main {
         // 488M -> 57M
     }
 
-    private static void persist1M_UUIDEntities() {
+    private static void persist1M_EntitiesWithUUIDv6() {
         // save 1.000.000 entities, commit every 10.000.
         final EntityTransaction transaction = em.getTransaction();
         final Instant start = Instant.now();
