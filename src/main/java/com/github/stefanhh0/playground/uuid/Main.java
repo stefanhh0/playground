@@ -49,19 +49,17 @@ public class Main {
         transaction.commit();
 
         final UniqueID testId = test.getId();
-        ZonedDateTime gregorianChange = ZonedDateTime.of(1582, Month.OCTOBER.getValue(), 15, 0, 0,
-                0, 0, ZoneId.from(ZoneOffset.UTC));
-
-        final long gregorianChangeInSeconds = gregorianChange.toEpochSecond();
-        final long offsetToLinuxEpocheIn100Nanos = gregorianChangeInSeconds * 1000 * 1000 * 10;
-        final long timestamp = testId.timestamp();
-        final long instantIn100Nanos = timestamp + offsetToLinuxEpocheIn100Nanos;
+        final Instant gregorianChange = Instant.parse("1582-10-15T00:00:00.000Z");
+        final long gregorianChangeInMillis = gregorianChange.toEpochMilli();
+        final long offsetToUnixEpochIn100Nanos = gregorianChangeInMillis * 1000 * 10;
+        final long timestamp = testId.getTimestamp();
+        final long instantIn100Nanos = timestamp + offsetToUnixEpochIn100Nanos;
         final long instantInSeconds = instantIn100Nanos / (1000 * 1000 * 10);
         final long instantRestIn100Nanos = instantIn100Nanos - instantInSeconds * 1000 * 1000 * 10;
         final long instantRestInNanos = instantRestIn100Nanos * 100;
 
-        out.println("Gregorian change in seconds: " + gregorianChangeInSeconds);
-        out.println("Offset to linux epoche in nanos: " + offsetToLinuxEpocheIn100Nanos);
+        out.println("Gregorian change in millis: " + gregorianChangeInMillis);
+        out.println("Offset to linux epoche in nanos: " + offsetToUnixEpochIn100Nanos);
         out.println("UUID: " + testId);
         out.println("Timestamp in 100 nanos: " + timestamp);
         out.println("Instant in 100 nanos: " + instantIn100Nanos);
@@ -135,12 +133,11 @@ public class Main {
     }
 
     private static String toString(final UUID uuid) {
-        ZonedDateTime gregorianChange = ZonedDateTime.of(1582, Month.OCTOBER.getValue(), 15, 0, 0,
-                0, 0, ZoneId.from(ZoneOffset.UTC));
-        final long gregorianChangeInSeconds = gregorianChange.toEpochSecond();
-        final long offsetToLinuxEpocheIn100Nanos = gregorianChangeInSeconds * 1000 * 1000 * 10;
+        final Instant gregorianChange = Instant.parse("1582-10-15T00:00:00.000Z");
+        final long gregorianChangeInMillis = gregorianChange.toEpochMilli();
+        final long offsetToUnixEpochIn100Nanos = gregorianChangeInMillis * 1000 * 10;
         final long instantIn100Nanos = UuidUtil.extractTimestamp(uuid)
-                + offsetToLinuxEpocheIn100Nanos;
+                + offsetToUnixEpochIn100Nanos;
         final long instantInSeconds = instantIn100Nanos / (1000 * 1000 * 10);
         final long instantRestIn100Nanos = instantIn100Nanos - instantInSeconds * 1000 * 1000 * 10;
         final Instant timestamp = Instant.ofEpochSecond(instantInSeconds, instantRestIn100Nanos);
