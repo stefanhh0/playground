@@ -17,5 +17,4 @@ public class EntityWithSequenceID {
     @SequenceGenerator(name = "sequence_generator", sequenceName = "sequence", schema = "uuid")
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
-
 }

@@ -17,23 +17,28 @@ public class EntityWithUUID {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator", parameters = {
-            @Parameter(name = "uuid_gen_strategy_class", value = "com.github.stefanhh0.playground.uuid.TimeOrderedUUIDGeneratorStrategy") })
+    @GenericGenerator(name = "UUID",
+                      strategy = "org.hibernate.id.UUIDGenerator",
+                      parameters = { @Parameter(name = "uuid_gen_strategy_class",
+                                                value = "com.github.stefanhh0.playground.uuid.TimeOrderedUUIDGeneratorStrategy") })
     @Column(name = "id", nullable = false, updatable = false)
     private UUID id;
 
-//    @Id
-//    @GeneratedValue(generator = "UUID")
-//    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-//    @Column(name = "id", nullable = false, updatable = false)
-//    private UUID id;
+    // @Id
+    // @GeneratedValue(generator = "UUID")
+    // @GenericGenerator(name = "UUID", strategy =
+    // "org.hibernate.id.UUIDGenerator")
+    // @Column(name = "id", nullable = false, updatable = false)
+    // private UUID id;
 
-//    @Id
-//    @GeneratedValue(generator = "UUID")
-//    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator", parameters = {
-//            @Parameter(name = "uuid_gen_strategy_class", value = "org.hibernate.id.uuid.CustomVersionOneStrategy") })
-//    @Column(name = "id", nullable = false, updatable = false)
-//    private UUID id;
+    // @Id
+    // @GeneratedValue(generator = "UUID")
+    // @GenericGenerator(name = "UUID",
+    // strategy = "org.hibernate.id.UUIDGenerator",
+    // parameters = { @Parameter(name = "uuid_gen_strategy_class",
+    // value = "org.hibernate.id.uuid.CustomVersionOneStrategy") })
+    // @Column(name = "id", nullable = false, updatable = false)
+    // private UUID id;
 
     protected EntityWithUUID() {
     }

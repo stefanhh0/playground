@@ -24,8 +24,7 @@ import com.github.f4b6a3.uuid.util.UuidUtil;
 
 public class Main {
 
-    private static final EntityManagerFactory emf = Persistence
-            .createEntityManagerFactory("playground");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("playground");
 
     private static final EntityManager em = emf.createEntityManager();
 
@@ -48,15 +47,16 @@ public class Main {
         em.persist(test);
         transaction.commit();
 
-        final UniqueID testId = test.getId();
-        final Instant gregorianChange = Instant.parse("1582-10-15T00:00:00.000Z");
-        final long gregorianChangeInMillis = gregorianChange.toEpochMilli();
+        final UniqueID testId          = test.getId();
+        final Instant  gregorianChange = Instant.parse("1582-10-15T00:00:00.000Z");
+
+        final long gregorianChangeInMillis     = gregorianChange.toEpochMilli();
         final long offsetToUnixEpochIn100Nanos = gregorianChangeInMillis * 1000 * 10;
-        final long timestamp = testId.getTimestamp();
-        final long instantIn100Nanos = timestamp + offsetToUnixEpochIn100Nanos;
-        final long instantInSeconds = instantIn100Nanos / (1000 * 1000 * 10);
-        final long instantRestIn100Nanos = instantIn100Nanos - instantInSeconds * 1000 * 1000 * 10;
-        final long instantRestInNanos = instantRestIn100Nanos * 100;
+        final long timestamp                   = testId.getTimestamp();
+        final long instantIn100Nanos           = timestamp + offsetToUnixEpochIn100Nanos;
+        final long instantInSeconds            = instantIn100Nanos / (1000 * 1000 * 10);
+        final long instantRestIn100Nanos       = instantIn100Nanos - instantInSeconds * 1000 * 1000 * 10;
+        final long instantRestInNanos          = instantRestIn100Nanos * 100;
 
         out.println("Gregorian change in millis: " + gregorianChangeInMillis);
         out.println("Offset to linux epoche in nanos: " + offsetToUnixEpochIn100Nanos);
@@ -67,23 +67,28 @@ public class Main {
         out.println("Instant rest in 100 nanos: " + instantRestIn100Nanos);
         out.println("Instant rest in nanos: " + instantRestInNanos);
         final Instant instant = Instant.ofEpochSecond(instantInSeconds, instantRestInNanos);
-        out.println(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL)
-                .withLocale(Locale.GERMANY)
-                .withZone(ZoneId.from(ZoneOffset.UTC))
-                .format(instant));
 
+        out.println(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL)
+                                     .withLocale(Locale.GERMANY)
+                                     .withZone(ZoneId.from(ZoneOffset.UTC))
+                                     .format(instant));
     }
 
     private static void createSyntheticSequentialUUIDsStartingAtZero() {
-        ZonedDateTime gregorianChange = ZonedDateTime.of(1582, Month.OCTOBER.getValue(), 15, 0, 0,
-                0, 0, ZoneId.from(ZoneOffset.UTC));
+        ZonedDateTime gregorianChange = ZonedDateTime.of(1582,
+                                                         Month.OCTOBER.getValue(),
+                                                         15,
+                                                         0,
+                                                         0,
+                                                         0,
+                                                         0,
+                                                         ZoneId.from(ZoneOffset.UTC));
 
         final long gregorianChangeInSeconds = gregorianChange.toEpochSecond();
 
         final TimeOrderedUuidCreator timeOrderedCreator = UuidCreator.getTimeOrderedCreator();
         for (long i = 0; i < 2000; i += 100) {
-            final UUID oldId = timeOrderedCreator
-                    .create(Instant.ofEpochSecond(gregorianChangeInSeconds, i), 0, 0L);
+            final UUID oldId = timeOrderedCreator.create(Instant.ofEpochSecond(gregorianChangeInSeconds, i), 0, 0L);
             out.println(oldId);
             out.println(toString(oldId));
         }
@@ -92,6 +97,7 @@ public class Main {
     private static void persist1M_EntitiesWithSequenceID() {
         // save 1.000.000 entities, commit every 10.000.
         final EntityTransaction transaction = em.getTransaction();
+
         final Instant start = Instant.now();
         transaction.begin();
         for (int i = 0; i < 1000000; i++) {
@@ -103,8 +109,11 @@ public class Main {
         }
         transaction.commit();
         final Duration duration = Duration.between(start, Instant.now());
-        out.printf("Sequence-based: %02d:%02d:%02d.%03d%n", duration.toHoursPart(),
-                duration.toMinutesPart(), duration.toSecondsPart(), duration.toMillisPart());
+        out.printf("Sequence-based: %02d:%02d:%02d.%03d%n",
+                   duration.toHoursPart(),
+                   duration.toMinutesPart(),
+                   duration.toSecondsPart(),
+                   duration.toMillisPart());
 
         // On disk usage for Sequence:
         // 431M
@@ -114,7 +123,7 @@ public class Main {
     private static void persist1M_EntitiesWithUUIDv6() {
         // save 1.000.000 entities, commit every 10.000.
         final EntityTransaction transaction = em.getTransaction();
-        final Instant start = Instant.now();
+        final Instant           start       = Instant.now();
         transaction.begin();
         for (int i = 0; i < 1000000; i++) {
             em.persist(new EntityWithUUID());
@@ -125,25 +134,28 @@ public class Main {
         }
         transaction.commit();
         final Duration duration = Duration.between(start, Instant.now());
-        out.printf("UUID-based: %02d:%02d:%02d.%03d%n", duration.toHoursPart(),
-                duration.toMinutesPart(), duration.toSecondsPart(), duration.toMillisPart());
+        out.printf("UUID-based: %02d:%02d:%02d.%03d%n",
+                   duration.toHoursPart(),
+                   duration.toMinutesPart(),
+                   duration.toSecondsPart(),
+                   duration.toMillisPart());
         // On disk usage for UUID:
         // 488M
         // 560M -> 72M
     }
 
     private static String toString(final UUID uuid) {
-        final Instant gregorianChange = Instant.parse("1582-10-15T00:00:00.000Z");
-        final long gregorianChangeInMillis = gregorianChange.toEpochMilli();
-        final long offsetToUnixEpochIn100Nanos = gregorianChangeInMillis * 1000 * 10;
-        final long instantIn100Nanos = UuidUtil.extractTimestamp(uuid)
-                + offsetToUnixEpochIn100Nanos;
-        final long instantInSeconds = instantIn100Nanos / (1000 * 1000 * 10);
-        final long instantRestIn100Nanos = instantIn100Nanos - instantInSeconds * 1000 * 1000 * 10;
-        final Instant timestamp = Instant.ofEpochSecond(instantInSeconds, instantRestIn100Nanos);
+        final Instant gregorianChange             = Instant.parse("1582-10-15T00:00:00.000Z");
+        final long    gregorianChangeInMillis     = gregorianChange.toEpochMilli();
+        final long    offsetToUnixEpochIn100Nanos = gregorianChangeInMillis * 1000 * 10;
+        final long    instantIn100Nanos           = UuidUtil.extractTimestamp(uuid) + offsetToUnixEpochIn100Nanos;
+        final long    instantInSeconds            = instantIn100Nanos / (1000 * 1000 * 10);
+        final long    instantRestIn100Nanos       = instantIn100Nanos - instantInSeconds * 1000 * 1000 * 10;
+        final Instant timestamp                   = Instant.ofEpochSecond(instantInSeconds, instantRestIn100Nanos);
+
         return DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL)
-                .withLocale(Locale.GERMANY)
-                .withZone(ZoneId.from(ZoneOffset.UTC))
-                .format(timestamp);
+                                .withLocale(Locale.GERMANY)
+                                .withZone(ZoneId.from(ZoneOffset.UTC))
+                                .format(timestamp);
     }
 }
