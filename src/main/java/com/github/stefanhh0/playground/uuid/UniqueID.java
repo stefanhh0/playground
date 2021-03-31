@@ -18,12 +18,12 @@ public final class UniqueID implements Serializable, Comparable<UniqueID> {
         this.uuid = uuid;
     }
 
-    public long getTimestamp() {
-        return UuidUtil.extractTimestamp(uuid);
-    }
-
     public Instant getInstant() {
         return UuidTime.toInstant(getTimestamp());
+    }
+
+    public long getTimestamp() {
+        return UuidUtil.extractTimestamp(uuid);
     }
 
     public Date getDate() {
@@ -33,11 +33,6 @@ public final class UniqueID implements Serializable, Comparable<UniqueID> {
     @Override
     public int compareTo(UniqueID o) {
         return uuid.compareTo(uuid);
-    }
-
-    @Override
-    public String toString() {
-        return uuid.toString();
     }
 
     @Override
@@ -51,5 +46,10 @@ public final class UniqueID implements Serializable, Comparable<UniqueID> {
             uuid.equals(((UniqueID) obj).uuid);
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return uuid.toString();
     }
 }
