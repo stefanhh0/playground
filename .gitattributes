@@ -1,12 +1,6 @@
-
-# Set default behaviour to automatically normalize line endings and whitespaces.
-* text=auto filter=whitespaces
+* text=auto
 
 # Force batch scripts to always use CRLF line endings.
 *.{cmd,[cC][mM][dD]} text eol=crlf
 *.{bat,[bB][aA][tT]} text eol=crlf
 
-# No whitespace normalization for files that are managed by tools like eclipse.
-.classpath text -filter
-.project text -filter
-.settings/** text -filter

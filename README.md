@@ -2,7 +2,7 @@
 
 This is just a playground.
 
-It is possible to open the playground in eclipse 2020-12.\
+It is possible to open the playground in eclipse 2021-03.\
 Eclipse can be downloaded here: https://www.eclipse.org/downloads/packages/ \
 Recommended package is "Eclipse IDE for Enterprise Java Developers"
 
@@ -33,3 +33,7 @@ is required to be specified in the `hibernate.properties`.
 To see some action go to:\
 `/playground/src/main/java/com/github/stefanhh0/playground/uuid/Main.java`\
 And chose 'Run as' -> 'Java Application' from the eclipse context menu.
+
+Additionally added a git-setup.sh and some scripts in githooks that demonstrate how to achieve pre-commit formatting.
+Pre-commit formatting might be useful for projects where the members use different Tools to edit the source code but
+where a common source formatting is wanted.
