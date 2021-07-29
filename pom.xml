@@ -13,26 +13,26 @@
         <maven.compiler.release>16</maven.compiler.release>
         <maven.version>3.6.3</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>5.3.8</spring.version>
-        <hibernate.version>5.5.2.Final</hibernate.version>
-        <postgresql.version>42.2.22</postgresql.version>
-        <uuid-creator.version>3.7.2</uuid-creator.version>
-        <aspectj.version>1.9.6</aspectj.version>
+        <spring.version>5.3.9</spring.version>
+        <hibernate.version>5.5.4.Final</hibernate.version>
+        <postgresql.version>42.2.23</postgresql.version>
+        <uuid-creator.version>3.7.3</uuid-creator.version>
+        <aspectj.version>1.9.7</aspectj.version>
         <guava.version>30.1.1-jre</guava.version>
-        <errorprone.version>2.6.0</errorprone.version>
+        <errorprone.version>2.8.0</errorprone.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
-        <javax.jsp-api.version>2.3.3</javax.jsp-api.version>
+        <javax.servlet.jsp-api.version>2.3.3</javax.servlet.jsp-api.version>
         <jstl.version>1.2</jstl.version>
         <jaxws-api.version>2.3.1</jaxws-api.version>
         <lombok.version>1.18.20</lombok.version>
-        <slf4j.version>1.7.30</slf4j.version>
-        <jsoup.version>1.13.1</jsoup.version>
+        <slf4j.version>1.7.32</slf4j.version>
+        <jsoup.version>1.14.1</jsoup.version>
 
         <!-- testing -->
         <junit-jupiter.version>5.8.0-M1</junit-jupiter.version>
         <easymock.version>4.3</easymock.version>
         <hamcrest.version>2.2</hamcrest.version>
-        <checkerframework.version>3.14.0</checkerframework.version>
+        <checkerframework.version>3.16.0</checkerframework.version>
 
         <!-- plugins -->
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
@@ -134,7 +134,7 @@
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
-            <version>${javax.jsp-api.version}</version>
+            <version>${javax.servlet.jsp-api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
