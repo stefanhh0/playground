@@ -12,34 +12,34 @@
     <properties>
         <maven.version>3.6.3</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>5.3.9</spring.version>
-        <hibernate.version>5.5.4.Final</hibernate.version>
-        <postgresql.version>42.2.23</postgresql.version>
-        <uuid-creator.version>3.7.3</uuid-creator.version>
+        <spring.version>5.3.12</spring.version>
+        <hibernate.version>5.6.0.Final</hibernate.version>
+        <postgresql.version>42.3.0</postgresql.version>
+        <uuid-creator.version>4.0.0</uuid-creator.version>
         <aspectj.version>1.9.7</aspectj.version>
-        <guava.version>30.1.1-jre</guava.version>
+        <guava.version>31.0.1-jre</guava.version>
         <errorprone.version>2.9.0</errorprone.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <javax.servlet.jsp-api.version>2.3.3</javax.servlet.jsp-api.version>
         <jstl.version>1.2</jstl.version>
         <jaxws-api.version>2.3.1</jaxws-api.version>
-        <lombok.version>1.18.20</lombok.version>
+        <lombok.version>1.18.22</lombok.version>
         <slf4j.version>1.7.32</slf4j.version>
-        <jsoup.version>1.14.1</jsoup.version>
+        <jsoup.version>1.14.3</jsoup.version>
 
         <!-- testing -->
-        <junit-jupiter.version>5.8.0-M1</junit-jupiter.version>
+        <junit-jupiter.version>5.8.1</junit-jupiter.version>
         <easymock.version>4.3</easymock.version>
         <hamcrest.version>2.2</hamcrest.version>
-        <checkerframework.version>3.16.0</checkerframework.version>
+        <checkerframework.version>3.18.1</checkerframework.version>
 
         <!-- plugins -->
-        <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+        <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <junit-platform-launcher.version>1.8.0-M1</junit-platform-launcher.version>
-        <maven-war-plugin.version>3.3.1</maven-war-plugin.version>
+        <junit-platform-launcher.version>1.8.1</junit-platform-launcher.version>
+        <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
         <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
     </properties>
 
@@ -253,8 +253,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>17</source>
+                    <target>17</target>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
                     <compilerArgs>

@@ -5,7 +5,6 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.UUID;
 
-import com.github.f4b6a3.uuid.util.UuidTime;
 import com.github.f4b6a3.uuid.util.UuidUtil;
 
 public final class UniqueID implements Serializable, Comparable<UniqueID> {
@@ -19,11 +18,11 @@ public final class UniqueID implements Serializable, Comparable<UniqueID> {
     }
 
     public Instant getInstant() {
-        return UuidTime.toInstant(getTimestamp());
+        return Instant.ofEpochMilli(getTimestamp());
     }
 
     public long getTimestamp() {
-        return UuidUtil.extractTimestamp(uuid);
+        return UuidUtil.getTimestamp(uuid);
     }
 
     public Date getDate() {

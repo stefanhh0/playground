@@ -19,7 +19,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.github.f4b6a3.uuid.creator.rfc4122.TimeOrderedUuidCreator;
 import com.github.f4b6a3.uuid.util.UuidUtil;
 
 public class Main {
@@ -86,9 +85,9 @@ public class Main {
 
         final long gregorianChangeInSeconds = gregorianChange.toEpochSecond();
 
-        final TimeOrderedUuidCreator timeOrderedCreator = UuidCreator.getTimeOrderedCreator();
         for (long i = 0; i < 2000; i += 100) {
-            final UUID oldId = timeOrderedCreator.create(Instant.ofEpochSecond(gregorianChangeInSeconds, i), 0, 0L);
+            final UUID oldId = UuidCreator.getTimeOrderedWithRandom(Instant.ofEpochSecond(gregorianChangeInSeconds, i),
+                                                                    0);
             out.println(oldId);
             out.println(toString(oldId));
         }
@@ -148,7 +147,7 @@ public class Main {
         final Instant gregorianChange             = Instant.parse("1582-10-15T00:00:00.000Z");
         final long    gregorianChangeInMillis     = gregorianChange.toEpochMilli();
         final long    offsetToUnixEpochIn100Nanos = gregorianChangeInMillis * 1000 * 10;
-        final long    instantIn100Nanos           = UuidUtil.extractTimestamp(uuid) + offsetToUnixEpochIn100Nanos;
+        final long    instantIn100Nanos           = UuidUtil.getTimestamp(uuid) + offsetToUnixEpochIn100Nanos;
         final long    instantInSeconds            = instantIn100Nanos / (1000 * 1000 * 10);
         final long    instantRestIn100Nanos       = instantIn100Nanos - instantInSeconds * 1000 * 1000 * 10;
         final Instant timestamp                   = Instant.ofEpochSecond(instantInSeconds, instantRestIn100Nanos);
