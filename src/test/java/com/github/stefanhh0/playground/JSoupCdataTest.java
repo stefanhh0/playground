@@ -3,7 +3,7 @@ package com.github.stefanhh0.playground;
 import java.util.stream.Stream;
 
 import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ public class JSoupCdataTest {
     @Test
     void testDangerousInput() {
         final String dangerousInput = "<script>test</script>";
-        final String result         = Jsoup.clean(dangerousInput, Whitelist.none());
+        final String result         = Jsoup.clean(dangerousInput, Safelist.none());
         Assertions.assertEquals("", result);
     }
 
@@ -29,7 +29,7 @@ public class JSoupCdataTest {
     @ParameterizedTest
     @MethodSource("bogusCdataInput")
     void testBogusInput(final String input) {
-        final String result = Jsoup.clean(input, Whitelist.none());
+        final String result = Jsoup.clean(input, Safelist.none());
         Assertions.assertEquals("test]]&gt;", result);
     }
 
@@ -40,7 +40,7 @@ public class JSoupCdataTest {
     @ParameterizedTest
     @MethodSource("charactersOnly")
     void testCharactersOnly(final String input) {
-        final String result = Jsoup.clean(input, Whitelist.none());
+        final String result = Jsoup.clean(input, Safelist.none());
         Assertions.assertEquals("&lt;script&gt;test&lt;/script&gt;", result);
     }
 
@@ -50,8 +50,8 @@ public class JSoupCdataTest {
         final String scriptInput     = "<script>test</script>";
         final String bogusCdataInput = "<![cdata[<script>test</script>]]>";
 
-        final String scriptResult     = Jsoup.clean(scriptInput, Whitelist.none());
-        final String bogusCdataResult = Jsoup.clean(bogusCdataInput, Whitelist.none());
+        final String scriptResult     = Jsoup.clean(scriptInput, Safelist.none());
+        final String bogusCdataResult = Jsoup.clean(bogusCdataInput, Safelist.none());
 
         Assertions.assertEquals("", scriptResult);
         Assertions.assertEquals("]]&gt;", bogusCdataResult);
