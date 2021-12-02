@@ -10,16 +10,16 @@
     <packaging>war</packaging>
 
     <properties>
-        <maven.version>3.6.3</maven.version>
+        <maven.version>3.8.4</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>5.3.12</spring.version>
-        <hibernate.version>5.6.0.Final</hibernate.version>
-        <postgresql.version>42.3.0</postgresql.version>
-        <uuid-creator.version>4.0.0</uuid-creator.version>
+        <spring.version>5.3.14</spring.version>
+        <hibernate.version>5.6.3.Final</hibernate.version>
+        <postgresql.version>42.3.1</postgresql.version>
+        <uuid-creator.version>4.3.1</uuid-creator.version>
         <aspectj.version>1.9.7</aspectj.version>
         <guava.version>31.0.1-jre</guava.version>
-        <errorprone.version>2.9.0</errorprone.version>
-        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+        <errorprone.version>2.10.0</errorprone.version>
+        <jakarta.servlet-api.version>4.0.4</jakarta.servlet-api.version>
         <javax.servlet.jsp-api.version>2.3.3</javax.servlet.jsp-api.version>
         <jstl.version>1.2</jstl.version>
         <jaxws-api.version>2.3.1</jaxws-api.version>
@@ -28,17 +28,17 @@
         <jsoup.version>1.14.3</jsoup.version>
 
         <!-- testing -->
-        <junit-jupiter.version>5.8.1</junit-jupiter.version>
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
         <easymock.version>4.3</easymock.version>
         <hamcrest.version>2.2</hamcrest.version>
-        <checkerframework.version>3.18.1</checkerframework.version>
+        <checkerframework.version>3.21.0</checkerframework.version>
 
         <!-- plugins -->
         <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <junit-platform-launcher.version>1.8.1</junit-platform-launcher.version>
+        <junit-platform-launcher.version>1.8.2</junit-platform-launcher.version>
         <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
         <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
     </properties>
@@ -121,9 +121,9 @@
             <version>${jaxws-api.version}</version>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${javax.servlet-api.version}</version>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>${jakarta.servlet-api.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
