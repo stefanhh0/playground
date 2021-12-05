@@ -18,6 +18,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import org.apache.commons.lang3.time.DurationFormatUtils;
+
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.github.f4b6a3.uuid.util.UuidUtil;
 
@@ -107,12 +109,9 @@ public class Main {
             }
         }
         transaction.commit();
-        final Duration duration = Duration.between(start, Instant.now());
-        out.printf("Sequence-based: %02d:%02d:%02d.%03d%n",
-                   duration.toHoursPart(),
-                   duration.toMinutesPart(),
-                   duration.toSecondsPart(),
-                   duration.toMillisPart());
+        final Duration duration  = Duration.between(start, Instant.now());
+        final String   durationS = DurationFormatUtils.formatDuration(duration.toMillis(), "HH:mm:ss.SSS");
+        out.printf("Sequence-based: %s%n", durationS);
 
         // On disk usage for Sequence:
         // 431M
@@ -132,12 +131,10 @@ public class Main {
             }
         }
         transaction.commit();
-        final Duration duration = Duration.between(start, Instant.now());
-        out.printf("UUID-based: %02d:%02d:%02d.%03d%n",
-                   duration.toHoursPart(),
-                   duration.toMinutesPart(),
-                   duration.toSecondsPart(),
-                   duration.toMillisPart());
+        final Duration duration  = Duration.between(start, Instant.now());
+        final String   durationS = DurationFormatUtils.formatDuration(duration.toMillis(), "HH:mm:ss.SSS");
+        out.printf("UUID-based: %s%n", durationS);
+
         // On disk usage for UUID:
         // 488M
         // 560M -> 72M

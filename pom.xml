@@ -26,6 +26,7 @@
         <lombok.version>1.18.22</lombok.version>
         <slf4j.version>1.7.32</slf4j.version>
         <jsoup.version>1.14.3</jsoup.version>
+        <apache.commons-lang3.version>3.12.0</apache.commons-lang3.version>
 
         <!-- testing -->
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
@@ -181,6 +182,11 @@
                     <artifactId>dataflow-errorprone</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache.commons-lang3.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.errorprone</groupId>
