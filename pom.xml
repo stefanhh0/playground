@@ -32,7 +32,8 @@
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
         <easymock.version>4.3</easymock.version>
         <hamcrest.version>2.2</hamcrest.version>
-        <checkerframework.version>3.21.0</checkerframework.version>
+        <checkerframework.version>3.21.1</checkerframework.version>
+        <simple-jndi.version>0.23.0</simple-jndi.version>
 
         <!-- plugins -->
         <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
@@ -223,6 +224,11 @@
             <artifactId>easymock</artifactId>
             <version>${easymock.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.h-thurow</groupId>
+            <artifactId>simple-jndi</artifactId>
+            <version>${simple-jndi.version}</version>
         </dependency>
     </dependencies>
 
