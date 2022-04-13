@@ -10,41 +10,41 @@
     <packaging>war</packaging>
 
     <properties>
-        <maven.version>3.8.4</maven.version>
+        <maven.version>3.8.6</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>5.3.16</spring.version>
-        <hibernate.version>5.6.5.Final</hibernate.version>
-        <postgresql.version>42.3.3</postgresql.version>
-        <uuid-creator.version>4.5.0</uuid-creator.version>
-        <aspectj.version>1.9.8</aspectj.version>
-        <guava.version>31.0.1-jre</guava.version>
-        <errorprone.version>2.11.0</errorprone.version>
+        <spring.version>5.3.22</spring.version>
+        <hibernate.version>5.6.10.Final</hibernate.version>
+        <postgresql.version>42.4.0</postgresql.version>
+        <uuid-creator.version>5.1.0</uuid-creator.version>
+        <aspectj.version>1.9.9.1</aspectj.version>
+        <guava.version>31.1-jre</guava.version>
+        <errorprone.version>2.14.0</errorprone.version>
         <jakarta.servlet-api.version>4.0.4</jakarta.servlet-api.version>
         <javax.servlet.jsp-api.version>2.3.3</javax.servlet.jsp-api.version>
         <jstl.version>1.2</jstl.version>
         <jaxws-api.version>2.3.1</jaxws-api.version>
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.24</lombok.version>
         <slf4j.version>1.7.36</slf4j.version>
-        <jsoup.version>1.14.3</jsoup.version>
+        <jsoup.version>1.15.2</jsoup.version>
         <apache.commons-lang3.version>3.12.0</apache.commons-lang3.version>
 
         <!-- testing -->
-        <junit-jupiter.version>5.8.2</junit-jupiter.version>
+        <junit-jupiter.version>5.9.0</junit-jupiter.version>
         <easymock.version>4.3</easymock.version>
-        <assertj.core.version>3.22.0</assertj.core.version>
-        <assertj.guava.version>3.4.0</assertj.guava.version>
-        <assertj.db.version>2.0.2</assertj.db.version>
-        <checkerframework.version>3.21.2</checkerframework.version>
+        <assertj-core.version>3.23.1</assertj-core.version>
+        <assertj-guava.version>3.5.0</assertj-guava.version>
+        <assertj-db.version>2.0.2</assertj-db.version>
+        <checkerframework.version>3.23.0</checkerframework.version>
         <simple-jndi.version>0.23.0</simple-jndi.version>
 
         <!-- plugins -->
-        <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
-        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
-        <maven-compiler-plugin.version>3.10.0</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <junit-platform-launcher.version>1.8.2</junit-platform-launcher.version>
+        <maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
+        <maven-resources-plugin.version>3.3.0</maven-resources-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+        <junit-platform-launcher.version>1.9.0</junit-platform-launcher.version>
         <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
-        <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
+        <maven-install-plugin.version>3.0.1</maven-install-plugin.version>
     </properties>
 
     <dependencies>
@@ -200,17 +200,17 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>${assertj.core.version}</version>
+            <version>${assertj-core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-guava</artifactId>
-            <version>${assertj.guava.version}</version>
+            <version>${assertj-guava.version}</version>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-db</artifactId>
-            <version>${assertj.db.version}</version>
+            <version>${assertj-db.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
